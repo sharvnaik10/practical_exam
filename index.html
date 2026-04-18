@@ -1,176 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Demo</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XPR808MVBZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  XXXXXX </title>
 
-  gtag('config', 'G-XPR808MVBZ');
-</script> 
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #f8fafc, #e2e8f0);
-    padding: 20px;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.container {
-    width: 100%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    width: 100%;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    animation: fadeIn 0.5s ease forwards;
-    opacity: 0;
-    width: 250px;
-    text-align: center;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
-
-.card:active {
-    transform: scale(0.98);
-}
-
-.card p {
-    font-size: 18px;
-    font-weight: bold;
-    color: #2563eb;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background: #2563eb;
-    color: white;
-    border: none;
-    margin-top: 15px;
-    cursor: pointer;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    background: #1e40af;
-    transform: translateY(-2px);
-}
-
-button:active {
-    transform: scale(0.95);
-}
-
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-</style>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EQMDD3LYBM"></script>
-<script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-EQMDD3LYBM', { 'debug_mode': true });
-</script>
+    gtag('config', 'G-XXXXXXXXXX'); 
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+    }
+    .book {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
+<header>
+  <h1> XXXXXXXXX </h1>
+</header>
 <div class="container">
-    <h2>Demo</h2>
-    <div class="grid" id="productGrid"></div>
+  <div class="XXXX">
+    <h2>XXXXX</h2>
+    <p>Price: ₹0</p>
+    <button onclick="trackClick()">Buy Now</button>
+  </div>
+  <div class="XXXX">
+    <h2>XXXXX </h2>
+    <p>Price: ₹0</p>
+    <button onclick="trackClick()">Buy Now</button>
+  </div>
 </div>
 
 <script>
-const products = [
-    { id: 'p1', name: 'Polished Chair', price: 8899, category: 'Electronics' },
-    { id: 'p2', name: 'Minimalist Table', price: 3199, category: 'Fashion' },
-    { id: 'p3', name: 'Smart Table', price: 21999, category: 'Accessories' },
-    { id: 'p4', name: 'Ultra-Wide Desk', price: 45999, category: 'Electronics' },
-    { id: 'p5', name: 'Canvas Bed', price: 65999, category: 'Accessories' }
-];
-
-function trackProductView(product) {
-    gtag('event', 'view_item', {
-        product_name: product.name
+  function trackClick() {
+    gtag('event', 'purchase_click', {
+      event_category: 'engagement',
+      event_label: 'Buy Button Click'
     });
-    console.log("Viewed:", product.name);
-}
-
-function addToCart(event, product) {
-    event.stopPropagation();
-    
-    gtag('event', 'add_to_cart', {
-        currency: 'INR',
-        value: product.price,
-        items: [{
-            item_id: product.id,
-            item_name: product.name,
-            item_category: product.category,
-            price: product.price,
-            quantity: 1
-        }]
-    });
-    
-    alert(product.name + " added to cart");
-}
-
-function renderProducts() {
-    const grid = document.getElementById("productGrid");
-    
-    products.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.onclick = () => trackProductView(product);
-        
-        card.innerHTML = `
-            <h3>${product.name}</h3>
-            <p>₹${product.price}</p>
-            <button onclick='addToCart(event, ${JSON.stringify(product).replace(/"/g, '&quot;')})'>Add to Cart</button>
-        `;
-        
-        grid.appendChild(card);
-    });
-}
-
-renderProducts();
+    alert("Button Click Tracked!");
+  }
 </script>
-
 </body>
 </html>
+
